@@ -10,6 +10,7 @@ class BooksController < ApplicationController
   def index
     @book = Book.new
     @books = Book.all
+    @favorite_count =  Favorite.where(book_id: params[:book_id], user_id: current_user.id).count
   end
 
   def create
