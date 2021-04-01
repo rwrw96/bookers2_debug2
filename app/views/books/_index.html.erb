@@ -23,7 +23,7 @@
         <% else %>
         <td><%= link_to book.favorites.count , book_favorites_path(book.id) , method: :post %></td>
         <% end %>
-        <td><%= @favorite_count %></td>
+
       </tr>
     <% end %>
   </tbody>
