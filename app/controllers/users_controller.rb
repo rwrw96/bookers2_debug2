@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:update]
+  before_action :ensure_correct_user, only: [:update,:edit]
+  
 
   def show
     @user = User.find(params[:id])
@@ -11,15 +12,20 @@ class UsersController < ApplicationController
     @users = User.all
     @book = Book.new
   end
+  
   def edit
     @user = User.find(params[:id])
+    @books = Book.all
   end
 
   def update
+    @books = Book.all
+    @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to users_path(@user), notice: "You have updated user successfully."
+      redirect_to user_path(@user.id), notice: "You have updated user successfully."
     else
-      render "show"
+      flash[:notice] = @user.errors.full_messages
+      render :edit
     end
   end
 
@@ -27,11 +33,16 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
+  
+  def book_params
+    params.require(:user).permit(:title, :body)
+  end
 
   def ensure_correct_user
     @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to user_path(current_user)
+    unless @user.id == current_user.id
+      redirect_to user_path(current_user.id)
     end
   end
+  
 end
