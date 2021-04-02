@@ -36,8 +36,6 @@
           <% end %>
         </tr>
       </table>
-      
-    
       <div class="commnets">
     <% @book_comments.each do |comment| %>
       <table>
@@ -54,8 +52,6 @@
         </tbody>
        </table>
       </div>
-      
-      
       <%= form_with(model:[@book, @book_comment],local:true) do |f| %>
       <div class="form-group">
         <%= f.text_area :comment, class: "form-control book_comment" %>
