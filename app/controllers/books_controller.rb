@@ -7,12 +7,15 @@ class BooksController < ApplicationController
      @new_book = Book.new
      @favorite_count =  Favorite.where(book_id: params[:book_id], user_id: current_user.id).count
      @book_comment = @book.book_comments.build
+     @book_comments = @book.book_comments
+     @book_comment_count = @book.book_comments.count
   end
 
   def index
     @book = Book.new
     @books = Book.all
     @favorite_count =  Favorite.where(book_id: params[:book_id], user_id: current_user.id).count
+    @book_comment_count = @book.book_comments.count
   end
 
   def create

@@ -23,6 +23,7 @@
         <% else %>
         <td><%= link_to book.favorites.count , book_favorites_path(book.id) , method: :post %></td>
         <% end %>
+        <td><span>コメント数:</span><%= book.book_comments.count %></td>
 
       </tr>
     <% end %>
