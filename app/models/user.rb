@@ -22,4 +22,8 @@ class User < ApplicationRecord
   def followed_by?(user)
     passive_relationships.find_by(followed_id: user.id).present?
   end
+  
+  def favorited_by?(user)
+	 favorites.where(user_id: user.id).exists?
+  end
 end

@@ -3,6 +3,7 @@ class BooksController < ApplicationController
 
 
   def show
+    @books = Book.all
      @book = Book.find(params[:id])
      @new_book = Book.new
      @favorite_count =  Favorite.where(book_id: params[:book_id], user_id: current_user.id).count
@@ -15,7 +16,7 @@ class BooksController < ApplicationController
   def index
     @book = Book.new
     @books = Book.all
-    @favorite_count =  Favorite.where(book_id: params[:book_id], user_id: current_user.id).count
+    @favorite_count =  Favorite.where(book_id: params[:book_id],  user_id: current_user.id).count
     @book_comment_count = @book.book_comments.count
   end
 
