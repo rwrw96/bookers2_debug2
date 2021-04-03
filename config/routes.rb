@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/search'
   root 'homes#top'
   get 'home/about' => "homes#about"
   
@@ -14,4 +15,6 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resource :book_comments, only: [:create, :destroy]
   end 
+  
+  resource :search, only: [:search]
 end
