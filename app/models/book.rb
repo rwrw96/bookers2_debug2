@@ -9,4 +9,8 @@ class Book < ApplicationRecord
 	def favorited_by?(user)
 		favorites.where(user_id: user.id).exists?
 	end
+	
+	def followed_by?(user)
+    	active_relationships.find_by(followed_id: user.id).present?
+	end
 end
