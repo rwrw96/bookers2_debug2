@@ -8,11 +8,11 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :book_comments, dependent: :destroy
   
-  has_many :active_relationships, class_name: "Relationship", foreign_key: :follower_id, dependent: :destroy
-  has_many :followeds, through: :active_relationships, source: :followed
+  has_many :active_relationships, class_name: "Relationship", foreign_key: :followed_id, dependent: :destroy
+  has_many :followeds, through: :active_relationships, source: :follower
   
-  has_many :passive_relationships, class_name: "Relationship", foreign_key: :followed_id, dependent: :destroy
-  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id, dependent: :destroy
+  has_many :followers, through: :passive_relationships, source: :followed
   
   attachment :profile_image, destroy: false
 
@@ -20,6 +20,6 @@ class User < ApplicationRecord
   validates :introduction, length: {maximum: 50}
   
   def followed_by?(user)
-    active_relationships.find_by(followed_id: user.id).present?
+    passive_relationships.find_by(followed_id: user.id).present?
   end
 end

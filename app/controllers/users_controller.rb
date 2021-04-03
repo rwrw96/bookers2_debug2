@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
+    @follow = current_user.active_relationships.build(follower_id: params[:user_id])
+    @follow.save
   end
   
   def edit
@@ -29,12 +31,12 @@ class UsersController < ApplicationController
     end
   end
   
-  def follower
+  def followers
     @user = User.find(params[:id])
     @users = @user.followers
   end
   
-  def followed
+  def followeds
     @user = User.find(params[:id])
     @users = @user.followeds
   end
