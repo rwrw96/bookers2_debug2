@@ -3,7 +3,7 @@ class BooksController < ApplicationController
 
 
   def show
-    @books = Book.all
+     @books = Book.all
      @book = Book.find(params[:id])
      @new_book = Book.new
      @favorite_count =  Favorite.where(book_id: params[:book_id], user_id: current_user.id).count
