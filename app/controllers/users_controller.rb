@@ -31,6 +31,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followeds
   end
+  
+  def create
+    if @user.save 
+      NotificationMailer.send_when_signup(@user).deliver
+      redirect_to @user
+    else
+      render 'new'
+    end
+  end
 
   private
   def user_params
