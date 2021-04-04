@@ -10,17 +10,9 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
-    @follow = current_user.active_relationships.build(follower_id: params[:user_id])
-    @follow.save
-  end
-  
-  def edit
-    @user = User.find(params[:id])
-    @books = Book.all
   end
 
   def update
-    @books = Book.all
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user.id), notice: "You have updated user successfully."
