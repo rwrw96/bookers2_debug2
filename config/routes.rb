@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+    devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+  }
+
+  
   get 'search/search'
   root 'homes#top'
   get 'home/about' => "homes#about"
   
-  devise_for :users
-  
+
   resources :users do
     resource :relationships, only: [:create, :destroy]
     get :followers, on: :member

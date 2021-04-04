@@ -18,6 +18,10 @@ class User < ApplicationRecord
 
   validates :name, length: {maximum: 20, minimum: 2}, uniqueness: true
   validates :introduction, length: {maximum: 50}
+  validates :postal_code, presence: true
+  validates :prefecture_code, presence: true
+  validates :city, presence: true
+  validates :street, presence: true
   
   def followed_by?(user)
     passive_relationships.find_by(followed_id: user.id).present?
