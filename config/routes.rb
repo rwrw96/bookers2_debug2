@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'room/show'
+  get 'room/create'
+  get 'chats/create'
     devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -20,6 +23,9 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
     resource :book_comments, only: [:create, :destroy]
   end 
+  
+  resources :rooms, only: [:create, :show]
+  resources :chats, only: [:create]
   
   resource :search, only: [:search]
 end
