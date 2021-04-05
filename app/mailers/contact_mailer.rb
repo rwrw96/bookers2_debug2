@@ -1,6 +1,7 @@
 class ContactMailer < ApplicationMailer
-　def send_when_admin_reply(user)
-    @user = user
-    mail to: user.email, subject: 'ご登録ありがとうございます'
-　end
+  
+ def welcome_email
+   @user = params[:user]
+   mail(to: @user.email, subject: 'welcome to my family!')
+ end
 end
