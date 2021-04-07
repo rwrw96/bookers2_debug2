@@ -22,7 +22,7 @@
   <% if @our_room == true %>
     <%= link_to "チャットを始める", room_path(@room_id) %>
   <% else %>
-    <%= form_for @room do |f| %>
+    <%= form_with model: @room do |f| %>
       <%= fields_for @user_room do |e| %>
         <%= e.hidden_field :user_id, value: @user.id %>
         <%= f.submit "チャットを始める" %>

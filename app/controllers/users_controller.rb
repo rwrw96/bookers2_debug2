@@ -15,12 +15,11 @@ class UsersController < ApplicationController
           if cu.room_id == u.room_id
             @our_room = true
             @room_id = cu.room_id
+          else
+            @room = Room.new
+            @user_room = UserRoom.new
           end
         end
-      end
-      unless @our_room
-        @room = Room.new
-        @user_room = UserRoom.new
       end
     end
   end
