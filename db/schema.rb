@@ -75,12 +75,12 @@ ActiveRecord::Schema.define(version: 2021_04_05_074359) do
     t.string "name"
     t.text "introduction"
     t.string "profile_image_id"
+    t.integer "postal_code", null: false
+    t.string "prefecture_code", null: false
+    t.string "city", null: false
+    t.string "street", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "postal_code"
-    t.string "prefecture_code"
-    t.string "city"
-    t.string "street"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
